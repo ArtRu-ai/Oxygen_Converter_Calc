@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxygenConverterWebApp", "OxygenConverterWebApp\OxygenConverterWebApp.csproj", "{0B211DB3-5EE6-42D0-980D-5CBC954CF0D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxygenConverterCore", "OxygenConverterCore\OxygenConverterCore.csproj", "{7E2E12A0-3AE8-428A-9D8D-13BF7A2F3A5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0B211DB3-5EE6-42D0-980D-5CBC954CF0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B211DB3-5EE6-42D0-980D-5CBC954CF0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B211DB3-5EE6-42D0-980D-5CBC954CF0D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E2E12A0-3AE8-428A-9D8D-13BF7A2F3A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2E12A0-3AE8-428A-9D8D-13BF7A2F3A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E2E12A0-3AE8-428A-9D8D-13BF7A2F3A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E2E12A0-3AE8-428A-9D8D-13BF7A2F3A5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
