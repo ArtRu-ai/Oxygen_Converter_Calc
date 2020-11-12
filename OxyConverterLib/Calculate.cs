@@ -23,12 +23,12 @@ namespace OxyConverterLib
 
         #region Входные данные
         /// <summary>
-        /// номинальная емкость конвертера
+        /// Номинальная емкость конвертера
         /// </summary>
         public double Q;
 
         /// <summary>
-        /// удельная интенсивность продувки
+        /// Удельная интенсивность продувки
         /// </summary>
         public double q;
 

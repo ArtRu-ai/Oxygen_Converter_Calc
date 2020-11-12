@@ -1,0 +1,81 @@
+﻿@model IEnumerable<OxygenConverterWebApp.Domain.InputDataVariants>
+
+@{
+    ViewBag.Title = "Список";
+}
+
+<h2>Список</h2>
+
+@using (Html.BeginForm("Index", "InputDataVariants", FormMethod.Post))
+{
+    <button type="submit" name="action" value="ClearTable">Очистить таблицу (тест)</button>
+    <button type="submit" name="action" value="LoadTable">Заполнить таблицу (тест)</button>
+    <p>
+    </p>
+}
+
+@using (Html.BeginForm("Index", "InputDataVariants", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+    <form method="post">
+        <div class=" form-inline">
+            <label class=" control-label">Вариант: </label>
+            @Html.DropDownList("ID_Variant", null, "Все", htmlAttributes: new { @class = "form-control" })
+            <button type="submit" name="action" value="Filter">Фильтр</button>
+        </div>
+    </form>
+
+}
+
+<p>
+    @Html.ActionLink("Создать новый вариант", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Variants.NameVariant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Q)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.q)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.T)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Variants.NameVariant)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Q)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.q)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.T)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.P)
+    </td>
+    <td>
+        @Html.ActionLink("Редактировать", "Edit", new { id = item.ID_InputDataVariant }) |
+        @Html.ActionLink("Подробности", "Details", new { id = item.ID_InputDataVariant }) |
+        @Html.ActionLink("Удалить", "Delete", new { id = item.ID_InputDataVariant })
+    </td>
+</tr>
+    }
+
+</table>

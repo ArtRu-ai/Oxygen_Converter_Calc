@@ -1,0 +1,61 @@
+﻿@model OxygenConverterWebApp.Domain.InputDataVariants
+
+@{
+    ViewBag.Title = "Удаление варианта";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы действительно собираетесь удалить это?</h3>
+
+<div>
+    <h4>Список вариантов</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Variants.NameVariant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Variants.NameVariant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Q)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.q)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.q)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.T)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.P)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.P)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>
+

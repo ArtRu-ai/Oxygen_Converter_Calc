@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Личный кабинет";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<aside>
+    <h3>Демонстрационный пример решения задачи</h3>
+    <p>
+        Тестовые данные, расчет и отображение результатов в табличной и графической формах
+    </p>
+
+    <ul>
+        <li>@Html.ActionLink("Демонстрационный пример", "Demo", "Home")</li>
+    </ul>
+</aside>
+
+<aside>
+    <h3>Таблицы базы данных </h3>
+    <p>
+        Просмотр и редактирование данных в таблицах
+    </p>
+    <ul>
+        <li>@Html.ActionLink("Справочник вариантов расчета", "Index", "Variants")</li>
+        <li>@Html.ActionLink("Справочник исходных данных вариантов расчета", "Index", "InputDataVariants")</li>
+    </ul>
+</aside>
+

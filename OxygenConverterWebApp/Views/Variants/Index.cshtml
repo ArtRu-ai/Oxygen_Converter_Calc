@@ -1,0 +1,54 @@
+﻿@model IEnumerable<OxygenConverterWebApp.Domain.Variants>
+
+@{
+    ViewBag.Title = "Список";
+}
+
+<h2>Список</h2>
+
+@using (Html.BeginForm("Index", "Variants", FormMethod.Post))
+{
+    <button type="submit" name="action" value="ClearTable">Очистить таблицу (тест)</button>
+    <button type="submit" name="action" value="LoadTable">Заполнить таблицу (тест)</button>
+    <p>
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameVariant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateVariant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameVariant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateVariant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.ID_Variant }) |
+                @Html.ActionLink("Подробности", "Details", new { id = item.ID_Variant }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID_Variant })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxygenConverterWebApp", "OxygenConverterWebApp\OxygenConverterWebApp.csproj", "{0B211DB3-5EE6-42D0-980D-5CBC954CF0D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxyConverterCore", "OxyConverterCore\OxyConverterCore.csproj", "{49F1266A-4550-4B51-97E5-9E280A11B762}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0B211DB3-5EE6-42D0-980D-5CBC954CF0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B211DB3-5EE6-42D0-980D-5CBC954CF0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B211DB3-5EE6-42D0-980D-5CBC954CF0D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49F1266A-4550-4B51-97E5-9E280A11B762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49F1266A-4550-4B51-97E5-9E280A11B762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49F1266A-4550-4B51-97E5-9E280A11B762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49F1266A-4550-4B51-97E5-9E280A11B762}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

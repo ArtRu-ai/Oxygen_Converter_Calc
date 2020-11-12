@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Расчётные показатели</h2>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Наименование показателя, ед. изм.</th>
+                        <th>Величина</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Удельный объём кислородного конвертера</td>
+                        <td>@Math.Round(ViewBag.Vud, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Критическая скорость истеения кислорода</td>
+                        <td>@Math.Round(ViewBag.Wud, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Давление кислорода перед соплами кислородной фурмы</td>
+                        <td>@Math.Round(ViewBag.Ph, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Начальная плотность кислорода</td>
+                        <td>@Math.Round(ViewBag.Ro_h, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Критерий скорости истечения кислорода</td>
+                        <td>@Math.Round(ViewBag.Lambda, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Скорость истечения кислорода на срезе сопла кислородной фурмы</td>
+                        <td>@Math.Round(ViewBag.W_g, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Плотность кислорода на срезе сопла кислородной фурмы</td>
+                        <td>@Math.Round(ViewBag.Ro_g, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Глубина спокойной ванны</td>
+                        <td>@Math.Round(ViewBag.H0, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Внутренний диаметр конвертера</td>
+                        <td>@Math.Round(ViewBag.D, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Объём металлической ванны</td>
+                        <td>@Math.Round(ViewBag.Vm, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Внутренний диаметр днища</td>
+                        <td>@Math.Round(ViewBag.d_dn, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Диаметр горловины конвертера</td>
+                        <td>@Math.Round(ViewBag.d_g, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Рабочий объём конвертера</td>
+                        <td>@Math.Round(ViewBag.V, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Высота конической части конвертера</td>
+                        <td>@Math.Round(ViewBag.H_k, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Высота цилиндрической части конвертера</td>
+                        <td>@Math.Round(ViewBag.H_c, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Внутренняя высота конвертера</td>
+                        <td>@Math.Round(ViewBag.H_v, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Толщина футеровки конвертера в цилиндрической части</td>
+                        <td>@Math.Round(ViewBag.t_c, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Толщина днища конвертера</td>
+                        <td>@Math.Round(ViewBag.t_dn, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Толщина футеровки конвертера в коничской части</td>
+                        <td>@Math.Round(ViewBag.t_k, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Толщина металлического кожуха конвертера</td>
+                        <td>@Math.Round(ViewBag.delta, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Наружный диаметр конвертера</td>
+                        <td>@Math.Round(ViewBag.D_n, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Полная высота конвертера</td>
+                        <td>@Math.Round(ViewBag.H, 2)</td>
+                    </tr>
+                    <tr>
+                        <td>Диаметр сталевыпускного отверстия</td>
+                        <td>@Math.Round(ViewBag.d_otv, 2)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div style="width:600px; padding-top:10px; padding-left:30px;">
+        <canvas id="Chart" style="display:block; "></canvas>
+        <script src="~/Scripts/Chart.js"></script>
+        <script>
+                var ctx = document.getElementById('Chart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Полная высота конвертера', 'Внутренняя высота конвертера'],
+                        datasets: [{
+                            label: "Сравнение высот",
+                            backgroundColor: [
+                                'rgb(255, 99, 128)',
+                                'rgb(54, 162, 235)'],
+                            data: [
+                                parseFloat(@Math.Round(ViewBag.H, 2)),
+                                parseFloat(@Math.Round(ViewBag.H_v, 2))],
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            display: true,
+                            position: "left"
+                        }
+                    }
+                });
+        </script>
+    </div>
+    <br />
+    <br />
+
+
+
+    @*<a href="@Url.Action("Excel", "Home")">Скачать решение в Excel</a>*@
+    <p></p>
+</body>
+</html>

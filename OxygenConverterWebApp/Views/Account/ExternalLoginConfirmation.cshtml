@@ -1,0 +1,39 @@
+﻿@model OxygenConverterWebApp.Models.RegisterExternalLoginModel
+
+@{ 
+    ViewBag.Title = "Регистрация";
+}
+
+<hgroup class="card-title">
+    <h1>@ViewBag.Title</h1>
+    <h2>Прикрепите ваш @ViewBag.ProviderDisplayName аккаунт</h2>
+</hgroup>
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Форма прикрепления</legend>
+        <p>
+            Вы успешно вошли с помощью <strong>@ViewBag.ProviderDisplayName</strong>.
+            Пожалуйста, введите имя пользователя для этого сайта и завершите регистрацию.
+        </p>
+        <ol>
+            <li class="name">
+                @Html.LabelFor(l => l.UserName)
+                @Html.TextBoxFor(l => l.UserName)
+                @Html.ValidationMessageFor(l => l.UserName)
+            </li>
+        </ol>
+
+        @Html.HiddenFor(l => l.ExternalLoginData)
+        <input type="submit" value="Зарегистрировать"/>
+    </fieldset>
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

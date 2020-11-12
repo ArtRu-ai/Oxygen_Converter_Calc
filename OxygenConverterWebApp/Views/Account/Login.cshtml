@@ -1,0 +1,42 @@
+﻿@model OxygenConverterWebApp.Models.LoginModel
+@{
+    ViewBag.Title = "Вход";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<section id="loginForm">
+    <h2>ИИспользуйте свои данные для входа</h2>
+    @using (Html.BeginForm(new { ReturnURl = ViewBag.ReturnUrl}))
+    {
+        @Html.AntiForgeryToken();
+        @Html.ValidationSummary();
+
+        <fieldset>
+            <legend>Форма входа</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(l => l.UserName)
+                    @Html.TextBoxFor(l => l.UserName)
+                    @Html.ValidationMessageFor(l => l.UserName)
+                </li>
+                <li>
+                    @Html.LabelFor(l => l.Password)
+                    @Html.PasswordFor(l => l.Password)
+                    @Html.ValidationMessageFor(l => l.Password)
+                </li>
+                <li>
+                    @Html.CheckBoxFor(l => l.RememberMe)
+                    @Html.LabelFor(l => l.RememberMe, new {@class = "checkbox" })
+                </li>
+            </ol>
+            <input type="submit" value="Вход"/>
+        </fieldset>
+        <p>
+            @Html.ActionLink("Зарегистрируйтесь", "Register") если вы не имеете учётной записи
+        </p>
+    }
+</section>
+
+
