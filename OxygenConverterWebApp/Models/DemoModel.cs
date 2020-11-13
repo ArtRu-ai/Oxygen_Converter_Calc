@@ -16,7 +16,7 @@ namespace OxygenConverterWebApp.Models
 
             #region --- Передать исходные данные в экземпляр библиотеки
             ocl.Q = _inputData.Q;
-            ocl.q = _inputData.q;
+            ocl.C = _inputData.C;
             ocl.T = _inputData.T;
             ocl.P = _inputData.P;
             #endregion --- Передать исходные данные в экземпляр библиотеки

@@ -19,10 +19,10 @@ namespace OxygenConverterWebApp.Models
             set { ocl.Q = value; }
         }
 
-        public double q
+        public double C
         {
-            get { return ocl.q; }
-            set { ocl.q = value; }
+            get { return ocl.C; }
+            set { ocl.C = value; }
         }
 
         public double T

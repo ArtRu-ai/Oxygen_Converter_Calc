@@ -73,7 +73,7 @@ namespace OxygenConverterWebApp.Controllers
             {
                 ID_Variant = _ID_Variant_1,
                 Q = 80,
-                q = 3,
+                C = 3,
                 T = 298,
                 P = 140000,
                 Owner = _users.CurrentUser

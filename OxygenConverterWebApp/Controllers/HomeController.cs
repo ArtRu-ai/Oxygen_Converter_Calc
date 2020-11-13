@@ -41,7 +41,7 @@ namespace OxygenConverterWebApp.Controllers
             #region --- Задать исходные данные по умолчанию
 
             ocl.Q = 80;
-            ocl.q = 3;
+            ocl.C = 3;
             ocl.T = 298;
             ocl.P = 140000;
 
@@ -62,7 +62,7 @@ namespace OxygenConverterWebApp.Controllers
             #region --- Задать исходные данные для выбранного варианта
 
             ocl.Q = _inputDataVariants.All.First(p => p.Variants.ID_Variant == ID_Variant && p.Owner.ID_User == _users.CurrentUser.ID_User).Q;
-            ocl.q = _inputDataVariants.All.First(p => p.Variants.ID_Variant == ID_Variant && p.Owner.ID_User == _users.CurrentUser.ID_User).q;
+            ocl.C = _inputDataVariants.All.First(p => p.Variants.ID_Variant == ID_Variant && p.Owner.ID_User == _users.CurrentUser.ID_User).C;
             ocl.T = _inputDataVariants.All.First(p => p.Variants.ID_Variant == ID_Variant && p.Owner.ID_User == _users.CurrentUser.ID_User).T;
             ocl.P = _inputDataVariants.All.First(p => p.Variants.ID_Variant == ID_Variant && p.Owner.ID_User == _users.CurrentUser.ID_User).P;
 
@@ -139,7 +139,7 @@ namespace OxygenConverterWebApp.Controllers
                 worksheet.Cells[5, 2] = inputData.Q.ToString();
 
                 worksheet.Cells[6, 1] = "Удельная интенсивность продувки";
-                worksheet.Cells[6, 2] = inputData.q.ToString();
+                worksheet.Cells[6, 2] = inputData.C.ToString();
 
                 worksheet.Cells[7, 1] = "Температура кислорода перед соплами кислородной фурмы";
                 worksheet.Cells[7, 2] = inputData.T.ToString();

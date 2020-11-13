@@ -30,7 +30,7 @@ namespace OxyConverterLib
         /// <summary>
         /// Удельная интенсивность продувки
         /// </summary>
-        public double q;
+        public double C;
 
         /// <summary>
         /// Температура кислорода перед соплами кислородной фурмы

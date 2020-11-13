@@ -23,8 +23,8 @@ namespace OxygenConverterWebApp.Domain
         public double Q { get; set; }
 
                
-        [Display(Name = "q1")]
-        public double q { get; set; }
+        [Display(Name = "C")]
+        public double C { get; set; }
 
         [Display(Name = "T")]
         public double T { get; set; }
