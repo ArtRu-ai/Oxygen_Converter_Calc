@@ -10,6 +10,7 @@ namespace OxygenConverterWebApp.Models
             : base("OxyConverterDBConnection")
         {
         }
+
         public DbSet<UserProfile> UserProfiles { get; set; }
 
         public DbSet<Variants> Variants { get; set; }

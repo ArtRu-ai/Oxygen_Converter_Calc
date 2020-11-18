@@ -2,8 +2,8 @@
 using OxygenConverterWebApp.Infrastructure;
 using OxygenConverterWebApp.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace OxygenConverterWebApp.Controllers
@@ -41,7 +41,7 @@ namespace OxygenConverterWebApp.Controllers
         {
             #region --- Ввод тестовых данных в базу данных
 
-            Variants var_1 = new Variants { NameVariant = "Вариант 1", DateVariant = new DateTime(2020, 09, 01), Owner = _users.CurrentUser };
+            Variants var_1 = new Variants { NameVariant = "Вариант 1", DateVariant = new DateTime(2020, 11, 01), Owner = _users.CurrentUser };
             _variants.InsertOrUpdate(var_1);
             _variants.Save();
 
@@ -104,6 +104,15 @@ namespace OxygenConverterWebApp.Controllers
             _variants.Remove(_variants.All.FirstOrDefault(t => t.ID_Variant == id));
             _variants.Save();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View(_variants.All.FirstOrDefault(t => t.ID_Variant == id));
         }
     }
 }

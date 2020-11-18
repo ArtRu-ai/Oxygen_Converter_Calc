@@ -36,24 +36,63 @@ namespace OxygenConverterWebApp.Controllers
         [Authorize]
         public ActionResult Demo()
         {
+            //OxyConverterLib.Calculate ocl = new OxyConverterLib.Calculate();
+            OxyConverterDB _db = new OxyConverterDB();
+
+            if (_db.Variants.Where(l => l.Owner.ID_User == _users.CurrentUser.ID_User).FirstOrDefault() == null)
+            {
+                double _Q = 80;
+                double _C = 3;
+                double _T = 298;
+                double _P = 140000;
+                string _NameDefaultVariant = "Шаблон";
+
+                Variants var_default = new Variants
+                {
+                    NameVariant = _NameDefaultVariant,
+                    DateVariant = System.DateTime.Now,
+                    Owner = _users.CurrentUser
+                };
+
+                int _ID_Variant_new = _db.Variants.Where(p => p.NameVariant == _NameDefaultVariant && p.Owner.ID_User == _users.CurrentUser.ID_User).First().ID_Variant;
+                InputDataVariants inputDataVariants_new = new InputDataVariants
+                {
+                    ID_Variant = _ID_Variant_new,
+                    Q = _Q,
+                    C = _C,
+                    T = _T,
+                    P = _P,
+                    Owner = _users.CurrentUser
+                };
+
+                _inputDataVariants.InsertOrUpdate(inputDataVariants_new);
+                _inputDataVariants.Save();
+
+                
+            }
+            int _ID_Variant_First = _db.Variants.First(p => p.Owner.ID_User == _users.CurrentUser.ID_User).ID_Variant;
             OxyConverterLib.Calculate ocl = new OxyConverterLib.Calculate();
 
-            #region --- Задать исходные данные по умолчанию
+            #region --- Задать исходные данные для первого найденного варианта
 
-            ocl.Q = 80;
-            ocl.C = 3;
-            ocl.T = 298;
-            ocl.P = 140000;
+            ocl.Q = _inputDataVariants.All.First(p => p.Variants.ID_Variant == _ID_Variant_First && p.Owner.ID_User == _users.CurrentUser.ID_User).Q;
+            ocl.C = _inputDataVariants.All.First(p => p.Variants.ID_Variant == _ID_Variant_First && p.Owner.ID_User == _users.CurrentUser.ID_User).C;
+            ocl.T = _inputDataVariants.All.First(p => p.Variants.ID_Variant == _ID_Variant_First && p.Owner.ID_User == _users.CurrentUser.ID_User).T;
+            ocl.P = _inputDataVariants.All.First(p => p.Variants.ID_Variant == _ID_Variant_First && p.Owner.ID_User == _users.CurrentUser.ID_User).P;
 
-            #endregion --- Задать исходные данные по умолчанию
+            #endregion --- Задать исходные данные для первого найденного варианта
 
             ViewBag.InputData = ocl;
             ViewBag.ID_Variant = new SelectList(_variants.All.Where(t => t.Owner.ID_User == _users.CurrentUser.ID_User), "ID_Variant", "NameVariant");
+            ViewBag.NameNewVariant = "Новый вариант";
 
             return View();
-        }
+        }    
+
+            
 
         [HttpPost]
+        [MultiButton(MatchFormKey = "action", MatchFormValue = "toApply")]  
         public ActionResult Demo(string _ID_Variant)
         {
             int ID_Variant = int.Parse(_ID_Variant);
@@ -70,13 +109,50 @@ namespace OxygenConverterWebApp.Controllers
 
             ViewBag.InputData = ocl;
             ViewBag.ID_Variant = new SelectList(_variants.All.Where(t => t.Owner.ID_User == _users.CurrentUser.ID_User), "ID_Variant", "NameVariant");
+            ViewBag.NameNewVariant = "Новый вариант";
 
             return View();
         }
 
         [HttpPost]
-        [Authorize] // Запрещены анонимные обращения к данной странице
-        public ActionResult RezultDemo(InputDataModel InputData)
+        [MultiButton(MatchFormKey = "action", MatchFormValue = "toSaveAs")]
+        public ActionResult Demo(InputDataModel InputData, string NameNewVariant)
+        {
+            OxyConverterDB db = new OxyConverterDB();
+            double _Q = double.Parse(InputData.Q.ToString());
+            double _C = double.Parse(InputData.C.ToString());
+            double _T = double.Parse(InputData.T.ToString());
+            double _P = double.Parse(InputData.P.ToString());
+            string _NameNewVariant = NameNewVariant.ToString();
+
+            Variants var_new = new Variants
+            {
+                NameVariant = _NameNewVariant,
+                DateVariant = System.DateTime.Now,
+                Owner = _users.CurrentUser
+            };
+            _variants.InsertOrUpdate(var_new);
+            _variants.Save();
+
+            int _ID_Variant_new = db.Variants.Where(p => p.NameVariant == _NameNewVariant && p.Owner.ID_User == _users.CurrentUser.ID_User).First().ID_Variant;
+            InputDataVariants inputDataVariants_new = new InputDataVariants
+            {
+                ID_Variant = _ID_Variant_new,
+                Q = _Q,
+                C = _C,
+                T = _T,
+                P = _P,
+                Owner = _users.CurrentUser
+            };
+            _inputDataVariants.InsertOrUpdate(inputDataVariants_new);
+            _inputDataVariants.Save();
+
+            return RedirectToAction("Demo", "Home");
+        }
+
+        [HttpPost]
+        [MultiButton(MatchFormKey = "action", MatchFormValue = "toSolver")]
+        public ActionResult Demo(InputDataModel InputData)
         {
             DemoModel result = new DemoModel(InputData);
 
@@ -107,7 +183,7 @@ namespace OxygenConverterWebApp.Controllers
             // ! Save input data to Session
             Session["InputData"] = InputData;
 
-            return View();
+            return View("RezultDemo");
         }
 
         [Authorize] // Запрещены анонимные обращения к данной странице

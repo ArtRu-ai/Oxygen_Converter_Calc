@@ -14,13 +14,17 @@
                         {
                             using (Html.BeginForm("Disassociate", "Account"))
                             {
-                                @Html.AntiForgeryToken();
+                                @Html.AntiForgeryToken()
                                 <div>
-                                    @Html.Hidden("provider",externalLogin.Provider)
-                                    @Html.Hidden("providerUserId",externalLogin.ProviderUserId)
-                                    <input type="submit" value="Remove" title="Remove this @externalLogin.ProviderDisplayName credential from your account"/>
+                                    @Html.Hidden("provider", externalLogin.Provider)
+                                    @Html.Hidden("providerUserId", externalLogin.ProviderUserId)
+                                    <input type="submit" value="Remove" title="Remove this @externalLogin.ProviderDisplayName credential from your account" />
                                 </div>
                             }
+                        }
+                        else
+                        {
+                            @: &nbsp;
                         }
                     </td>
                 </tr>
